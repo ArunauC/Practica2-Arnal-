@@ -10,7 +10,7 @@ public class CompanionSpawner : MonoBehaviour
         if (other.CompareTag("Player"))
             Spawn();
     }
-    void Spawn()
+    public void Spawn()
     {
         GameObject l_GameObject = GameObject.Instantiate(m_CompanionCubePrefab);
         l_GameObject.transform.position = m_SpawnerTransform.position;

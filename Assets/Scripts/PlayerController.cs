@@ -86,8 +86,8 @@ public class PlayerController : MonoBehaviour
         DontDestroyOnLoad(gameObject);
         GameController.GetGameController().SetPlayer(this);
         */
-       // m_StartPosition = transform.position;
-        //m_StartRotation = transform.position;
+        m_StartPosition = transform.position;
+        m_StartRotation = transform.rotation;
         UnityEngine.Cursor.lockState = CursorLockMode.Locked;
     }
     void Update()
@@ -147,9 +147,9 @@ public class PlayerController : MonoBehaviour
 
         if (CanShoot())
         {
-            if (Input.GetMouseButtonDown(m_BlueshootMouseButton))
+            if (Input.GetMouseButtonUp(m_BlueshootMouseButton))
                 Shoot(m_BluePortal);
-            else if (Input.GetMouseButtonDown(m_BlueshootMouseButton))
+            else if (Input.GetMouseButtonUp(m_OrangeshootMouseButton))
                 Shoot(m_OrangePortal);
         }
 
@@ -236,7 +236,6 @@ public class PlayerController : MonoBehaviour
         transform.position = m_StartPosition;
         transform.rotation = m_StartRotation;
         m_CharacterController.enabled = true;
-
     }
     void AttachObject()
     {
@@ -246,7 +245,7 @@ public class PlayerController : MonoBehaviour
             if (Physics.Raycast(l_Ray, out RaycastHit l_RaycastHit, m_ShootMaxDistance, m_ValidAttachObjectLayerMask.value))
             {
 
-                if (l_RaycastHit.collider.CompareTag("Cube"))
+                if (l_RaycastHit.collider.CompareTag("Cube") || l_RaycastHit.collider.CompareTag("Turret"))
                     AttachObject(l_RaycastHit.rigidbody);
             }
         }
