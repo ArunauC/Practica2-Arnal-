@@ -7,8 +7,8 @@ public class CompanionSpawner : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.CompareTag("Player"))
-            Spawn();
+        //if (other.CompareTag("Player"))
+            //Spawn();
     }
     public void Spawn()
     {
